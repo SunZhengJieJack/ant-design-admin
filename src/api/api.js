@@ -9,19 +9,19 @@ export const getList = (datas, page) => {
             name: '小明',
             age: 18,
             gender: 0,
-            data: datas.page
+            data: datas.pageNo
           },
           {
             name: '小兰',
             age: 20,
             gender: 1,
-            data: datas.page
+            data: datas.pageNo
           },
           {
             name: '韩孝周',
             age: 20,
             gender: 1,
-            data: datas.page
+            data: datas.pageNo
           }
         ],
         total: 100,
