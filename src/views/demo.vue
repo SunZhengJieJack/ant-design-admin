@@ -13,7 +13,7 @@
   </div>
 </template>
 <script>
-import { getAxios } from "@/api/api.js";
+import { getList,getSelect } from "@/api/api.js";
 export default {
   name: "demo",
   data() {
@@ -34,18 +34,6 @@ export default {
             on: {
               input: function (h) {
                 console.log(h, "change");
-              },
-            },
-          },
-          {
-            name: "addSelect2",
-            type: "select",
-            label: "动态默认值",
-            props: {
-            },
-            on: {
-              input: function (h) {
-                console.log(h, "change2");
               },
             },
           },
@@ -121,7 +109,7 @@ export default {
           let data = {
             ...parmas,
           };
-          let { list, total } = await getAxios(data);
+          let { list, total } = await getList(data);
           callback(list, total);
         } catch (error) {
           callback([], 0);
@@ -130,26 +118,24 @@ export default {
     };
     return {
       config: table,
-      choices: {},
+      choices: {
+        addSelect: []
+      },
       isvalue: {},
     };
   },
+  created() {
+    this.setSelect()
+  },
   mounted() {
-    setTimeout(() => {
-      this.choices.addSelect = [
-        {
-          label: "动态selct1",
-          value: "0",
-        },
-        {
-          label: "动态selct2",
-          value: "1",
-        },
-      ];
-    }, 1000);
-    this.$set(this.isvalue,'addSelect2','0')
+  
   },
   methods: {
+    async setSelect(){
+      let {list} = await  getSelect()      
+      this.choices.addSelect = list
+      this.$set(this.isvalue,'addSelect','0')
+    },
     tabsChange(e) {
       this.$refs.grid.go(
         {
