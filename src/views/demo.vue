@@ -119,7 +119,7 @@ export default {
     return {
       config: table,
       choices: {
-        addSelect: []
+        // addSelect: []
       },
       isvalue: {},
     };
@@ -133,7 +133,7 @@ export default {
   methods: {
     async setSelect(){
       let {list} = await  getSelect()      
-      this.choices.addSelect = list
+      this.$set(this.choices,'addSelect',list)
       this.$set(this.isvalue,'addSelect','0')
     },
     tabsChange(e) {
