@@ -21,6 +21,20 @@ export default {
     let table = {
       bordered: true,
       pageState: true,
+      buttons:[
+        {
+          name:'一个btn',
+          props:{
+            type: "primary"
+          }
+        },
+         {
+          name:'另一个btn',
+          props:{
+            type: "danger"
+          }
+        }
+      ],
       query: {
         labelWidth: "100px",
         layout: [

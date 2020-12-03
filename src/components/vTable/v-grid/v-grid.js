@@ -164,11 +164,11 @@ export default {
       const buttons = this.$_getButtons(h)
       const getQueryCol = this.$_getQueryCol(h)
       return (
-        <div style={{ 'padding': '24px', 'background': '#FFF', 'margin-bottom': '20px' }}>
+        <div style={{ 'padding': '10px 0 ', 'background': '#FFF' }}>
           <a-row type="flex" gutter={0} >
             {getQueryCol}
           </a-row >
-          <a-row type="flex">
+          <a-row type="flex" style="padding-top:10px">
             <a-col span={21} order={4}>
               {buttons}
             </a-col>
@@ -186,7 +186,7 @@ export default {
       return (
         <div style={{ 'background': '#fff' }}>
           {this.$_getTabs(h)}
-          {/* {this.$_getTitleContent(h)} */}
+          {this.$_getTitleContent(h)}
           <a-table bordered props={tableProps} scopedSlots={this.$scopedSlots}></a-table>
         </div>
       )
@@ -213,12 +213,31 @@ export default {
       pageval.pageNo = page
     },
     $_getButtons(h) {
-
+      let { config: { buttons } } = this
+      let btns = buttons.map(item => {
+        return h('a-button', {
+          style: {
+            'margin-right': '10px',
+            ...item.style
+          },
+          attrs: item.attrs ? item.attrs : [],
+          on: {
+            ...item.on,
+            'setVal': (e) => {
+            },
+          },
+          props: {
+            ...item.props,
+          }
+        }, item.name
+        )
+      })
+      return (btns)
     },
     $_getQueryCol(h) {
       let { config, config: { query: { labelWidth = '100px', layout } } } = this
       const cols = layout.map((row, i) => {
-        return <a-col span={row.colspan ? row.colspan : 8} style={{
+        return <a-col span={row.colspan ? row.colspan : 6} style={{
           'display': 'grid',
           'grid-template-columns': '100px auto',
           'padding': '10px 70px 10px 10px',
@@ -243,8 +262,8 @@ export default {
     // },
     $_initquery(h, type) {
       if (type == 'reset') this.query = {}
-      let { config: { query: { defaultQuery = {} } }, queryval} = this
-      this.query = { ...JSON.parse(JSON.stringify(defaultQuery)), ...queryval}
+      let { config: { query: { defaultQuery = {} } }, queryval } = this
+      this.query = { ...JSON.parse(JSON.stringify(defaultQuery)), ...queryval }
     },
     $_getComponents(h, row) {
       const { on = {}, attrs = {}, style = {}, props = {} } = row;
