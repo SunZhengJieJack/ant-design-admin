@@ -8,6 +8,10 @@
             <a-tab-pane key="1" tab="tab2" force-render></a-tab-pane>
           </a-tabs>
         </div>
+        <div slot="action">
+          <a-button type="primary">btn</a-button>
+          <a-button>btn2</a-button>
+        </div>
       </Grid>
     </a-card>
   </div>
@@ -132,9 +136,7 @@ export default {
     };
     return {
       config: table,
-      choices: {
-        // addSelect: []
-      },
+      choices: {},
       isvalue: {},
     };
   },
@@ -161,3 +163,6 @@ export default {
   },
 };
 </script>
+<style lang="less" scoped>
+
+</style>
