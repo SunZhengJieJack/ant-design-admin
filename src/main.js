@@ -2,13 +2,13 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import Grid from '@/components/vTable/index.js'
+import Components from '@/components/index.js'
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 Vue.config.productionTip = false;
 const components = {
   install(Vue) {
-    Vue.use(Grid)
+    Vue.use(Components)
   }
 }
 Vue.use(Antd);

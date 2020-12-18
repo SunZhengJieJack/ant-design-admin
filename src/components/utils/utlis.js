@@ -1,11 +1,78 @@
 
 
 
+
+
+export const mapState = (...names) => {
+  let r = {}
+  for(let name of names) {
+    r[name] = {
+      get () {
+        return this.store.states[name]
+      },
+      set (value) {
+        this.store.grid.$set(this.store.states, name, value)
+      }
+    }
+  }
+  return r
+}
+
+export const mapMethod = (...names) => {
+  let r = {}
+  for(let name of names) {
+    r[name] =  function mappedMethod(...args) {
+      return this.store[name](...args)
+    }
+  }
+  return r
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * format 日期时间
  */
 export const dateFormat = (time, format = 'yyyy-MM-dd') => {
-  debugger
   const t = new Date(time)
   const tf = function (i) {
     return (i < 10 ? '0' : '') + i

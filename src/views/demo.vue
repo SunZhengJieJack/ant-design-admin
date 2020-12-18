@@ -1,18 +1,7 @@
 <template>
   <div class="demo">
     <a-card title="Grid 组件" :bordered="false">
-      <Grid :config="config" ref="grid" :choices="choices" :queryval="isvalue">
-        <div slot="tabs">
-          <a-tabs default-active-key="0" @change="tabsChange">
-            <a-tab-pane key="0" tab="tab1"> </a-tab-pane>
-            <a-tab-pane key="1" tab="tab2" force-render></a-tab-pane>
-          </a-tabs>
-        </div>
-        <div slot="action">
-          <a-button type="primary">btn</a-button>
-          <a-button>btn2</a-button>
-        </div>
-      </Grid>
+      <Grid :config="config" ref="grid" :choices="choices" :queryval="isvalue"></Grid>
     </a-card>
   </div>
 </template>
