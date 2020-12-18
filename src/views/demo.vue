@@ -25,12 +25,16 @@ export default {
     let table = {
       bordered: true,
       pageState: true,
+      size: 'small',
       buttons:[
         {
           name:'一个btn',
           props:{
             type: "primary"
-          }
+          },
+          onChange: function(e){
+            debugger
+          },
         },
          {
           name:'另一个btn',
@@ -49,11 +53,14 @@ export default {
             props: {
               showSearch: true,
             },
-            on: {
-              input: function (h) {
-                console.log(h, "change");
-              },
-            },
+            // on: {
+            //   input: function (h) {
+            //     console.log(h, "change");
+            //   },
+            // },
+            onChange: function ( row , value ) { 
+              console.log(row,value)
+            }
           },
           {
             name: "query1",
@@ -117,6 +124,7 @@ export default {
         },
         {
           title: "操作",
+          dataIndex: "action",
           width: 200,
           scopedSlots: { customRender: "action" },
         },

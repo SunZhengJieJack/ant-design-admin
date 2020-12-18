@@ -193,7 +193,7 @@ export default {
     },
     $_getPage(h) {
       const { config, config: { pagingOptions, pageState }, isTable, isTable: { total }, } = this
-      const columns = config.columns.map((item) => {
+      const columns = config.columns.map((item) => { 
         return Object.assign(item, {
           key: item.dataIndex,
         })
@@ -215,7 +215,7 @@ export default {
     $_getButtons(h) {
       let { config: { buttons } } = this
       let btns = buttons.map(item => {
-        return h('a-button', {
+        return h('v-button', {
           style: {
             'margin-right': '10px',
             ...item.style
@@ -223,13 +223,12 @@ export default {
           attrs: item.attrs ? item.attrs : [],
           on: {
             ...item.on,
-            'setVal': (e) => {
-            },
           },
           props: {
             ...item.props,
+            isName: item.name
           }
-        }, item.name
+        }, ''
         )
       })
       return (btns)
@@ -276,7 +275,9 @@ export default {
             ...on,
             'setVal': (e) => {
               this.$set(query, row.name, e)
+              this.onChange(1,2)
             },
+            onChange: row.onChange?row.onChange:function(){}
           },
           props: {
             ...props,

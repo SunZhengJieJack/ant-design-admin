@@ -36,7 +36,6 @@ export default {
     disabledDateTime(e){
     },
     onchange(e){
-      this.$emit('setVal',dateFormat(e._d,this.format))
       this.$emit('input',dateFormat(e._d,this.format))
     },
   },

@@ -4,12 +4,14 @@ import vInput from './Input.vue'
 import vSelect from './Select.vue'
 import vDate from './Date.vue'
 import vDaterange from './DateRange.vue'
+import vButton from './Button.vue'
 const Components = {
   Grid,
   vInput,
   vSelect,
   vDate,
-  vDaterange
+  vDaterange,
+  vButton
 }
 export default () => {
   return Object.keys(Components).forEach((name) => {

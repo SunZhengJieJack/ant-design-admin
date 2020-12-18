@@ -39,11 +39,9 @@ export default {
   },
   methods: {
     onChange(e){
-      this.$emit('setVal',e.target.value)
       this.$emit('input',e.target.value)
     },
     pressEnter(e){
-      this.$emit('setval',e.target.value)
       this.$emit('input',e.target.value)
     }
   },

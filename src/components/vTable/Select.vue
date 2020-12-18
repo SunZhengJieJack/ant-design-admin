@@ -80,7 +80,6 @@ export default {
     onselect(){},
     ondropdownVisibleChange(){},
     setval(e){
-      this.$emit('setVal',e)
       this.$emit('input',e)
     },
     filterOption(input, option) {
