@@ -1,12 +1,11 @@
 <template>
   <div class="demo">
     <a-card title="Grid 组件" :bordered="false">
-      <Grid
-        :data="config"
-        ref="grid"
-        :choices="choices"
-        :value="isvalue"
-      ></Grid>
+      <Grid :data="config" ref="grid" :choices="choices" :value="isvalue">
+        <template slot="action" slot-scope="text, record">
+          插槽{{ text }}
+        </template>
+      </Grid>
     </a-card>
   </div>
 </template>
@@ -132,7 +131,8 @@ export default {
           let { list, total } = await getList(data)
           callback(list, { total: total })
         } catch (error) {
-          callback([], { total: 0 })
+          console.log(error)
+          // callback([], { total: 0 })
         }
       }
     }

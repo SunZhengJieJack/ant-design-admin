@@ -2,7 +2,7 @@
   <div class="c-Pagination">
     <a-pagination
       size="small"
-      :total="50"
+      :total="total"
       v-model="current"
       show-size-changer
       show-quick-jumper
@@ -20,7 +20,8 @@ export default {
   data() {
     return {
       current: this.store.page,
-      pageSize: this.store.pageSize
+      pageSize: this.store.pageSize,
+      total: this.store.total
     }
   },
   mounted() {},

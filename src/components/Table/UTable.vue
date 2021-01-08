@@ -1,14 +1,27 @@
 <template>
   <div class="c-table">
-    table
+    <a-table :columns="isColumns" :data-source="isData">
+      <slot></slot>
+    </a-table>
   </div>
 </template>
 <script>
+import Emitter from '../mixins/emitter.js'
 export default {
   name: 'Table',
-  props:['store'],
+  props: ['store'],
+  mixins: [Emitter],
   data() {
-    return {}
+    return {
+    }
+  },
+  computed: {
+    isColumns(){
+      return this.store.states.columns
+    },
+    isData(){
+      return this.store.states.data
+    }
   },
   mounted() {},
   methods: {}

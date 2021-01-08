@@ -20,7 +20,6 @@ export const mapMethod = (...names) => {
       return this.store[name](...args)
     }
   }
-  console.log(r)
   return r
 }
 
@@ -45,7 +44,6 @@ export const findParent = function (self, componentName) {
 export const deepCopy = function (data, clear = false, cache = []) {
   let o
   let clear_func
-
   if (clear) {
     if (clear === true) {
       clear_func = (k, v) => {

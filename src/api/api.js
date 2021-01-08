@@ -24,7 +24,7 @@ export const getList = (datas, page) => {
             data: datas.pageNo
           }
         ],
-        total: 100,
+        total: 50,
       }
       reolve(data)
     }, 1500);

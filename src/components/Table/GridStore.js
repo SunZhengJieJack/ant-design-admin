@@ -7,6 +7,7 @@ import {
   isEmpty
 } from '../utils/utlis'
 let settings = config.grid.base
+let rowKey = 1
 class Store {
   constructor(grid, options, value) {
     this.grid = grid
@@ -150,7 +151,6 @@ class Store {
     // 初始化states.param
     this.states.param.page = this.states.page
     this.states.param.pageSize = this.states.pageSize
-    console.log(this.states.param)
     if (!grid) {
       throw new Error('Grid object is Required.')
     }

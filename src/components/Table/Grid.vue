@@ -127,9 +127,9 @@ export default {
   },
   mounted() {
     if (this.autoLoad) {
-      // this.$nextTick(() => {
+      this.$nextTick(() => {
         this.loadData()
-      // })
+      })
     }
   },
   methods: {
@@ -201,13 +201,13 @@ export default {
           this.afterLoadData = null // 清除
         }
         this.$nextTick(() => {
-          // this.showLoading(false)
+          this.showLoading(false)
           this.setSelection(this.selected)
           this.sendInputEvent()
         })
       }
       if (this.onLoadData) {
-        // this.showLoading(true)
+        this.showLoading(true)
         this.onLoadData(_url, this.param, callback)
       }
     },
