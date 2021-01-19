@@ -1,11 +1,12 @@
 <template>
   <div class="demo">
     <a-card title="Grid 组件" :bordered="false">
-      <Grid :data="config" ref="grid" :choices="choices" :value="isvalue">
-        <template slot="action" slot-scope="text, record">
-          插槽{{ text }}
-        </template>
-      </Grid>
+      <Grid
+        :data="config"
+        ref="grid"
+        :choices="choices"
+        :value="isvalue"
+      ></Grid>
     </a-card>
   </div>
 </template>
@@ -16,8 +17,6 @@ export default {
   data() {
     let self = this
     let table = {
-      bordered: true,
-      pageState: true,
       size: 'small',
       buttons: [
         {
@@ -37,71 +36,48 @@ export default {
         }
       ],
       query: {
-        labelWidth: '100px',
-        layout: [
+        defaultValue: {
+        },
+        fields: [
           {
-            name: 'addSelect',
-            type: 'select',
-            label: '动态select',
-            props: {
-              showSearch: true
-            },
-            // on: {
-            //   input: function (h) {
-            //     console.log(h, "change");
-            //   },
-            // },
-            onChange: function(row, value) {
-              console.log(row, value)
-            }
+            name: 'input01',
+            type: 'string',
+            label: '输入框'
           },
           {
-            name: 'query1',
-            type: 'input',
-            label: 'input'
-          },
-          {
-            name: 'query2',
+            name: 'select01',
+            label: '静态下拉框',
             type: 'select',
-            label: '下拉框',
-            props: {
-              options: [
+            options: {
+              choices: [
                 {
-                  label: '静态selct1',
-                  value: '0'
+                  label: 'options1',
+                  value: '1'
                 },
                 {
-                  label: '静态selct2',
-                  value: '1'
+                  label: 'options2',
+                  value: '2'
                 }
               ]
             }
           },
           {
-            name: 'date1',
-            type: 'date',
-            label: '单时间'
-          },
-          {
-            name: 'date2',
-            type: 'daterange',
-            label: '区间时间'
+            name: 'select02',
+            type: 'string',
+            label: '动态下拉框'
           }
         ],
-        defaultQuery: {
-          query1: '默认值'
-        }
-      },
-      pagingOptions: {
-        showSizeChanger: true,
-        showQuickJumper: true,
-        size: 'small'
+        layout: [
+          ['nm', 'idNo'],
+          ['pcpMtlHpSt', 'gnd', 'pstnTp']
+        ],
+        choices: {}
       },
       columns: [
         {
           dataIndex: 'data',
-          title: '页',
-          width: 50
+          title: '序号',
+          width: 80
         },
         {
           dataIndex: 'name',
@@ -113,18 +89,49 @@ export default {
         },
         {
           dataIndex: 'gender',
-          title: '性别'
+          title: '性别',
+          customRender: function(text, record, index) {
+            return text ? '女' : '男'
+          }
         },
         {
           title: '操作',
           dataIndex: 'action',
-          width: 200,
-          scopedSlots: { customRender: 'action' }
+          width: 300,
+          customRender: function(text, record, index) {
+            const h = self.$createElement
+            const child = [
+              h('a-button', {
+                domProps: {
+                  innerHTML: '静态btn'
+                },
+                props: {
+                  type: 'primary'
+                }
+              }),
+              h('a-button', {
+                domProps: {
+                  innerHTML: '存在事件btn'
+                },
+                style: {
+                  margin: '0 0 0 10px'
+                },
+                props: {
+                  type: 'primadashedry'
+                },
+                on: {
+                  click: function() {
+                    self.$message.error('点我干嘛！！！')
+                  }
+                }
+              })
+            ]
+            return child
+          }
         }
       ],
       onLoadData: async function(url, parmas, callback) {
         try {
-          console.log(parmas)
           let data = {
             ...parmas
           }

@@ -1,6 +1,6 @@
 <template>
   <div class="c-table">
-    <a-table :columns="isColumns" :data-source="isData">
+    <a-table :columns="isColumns" :data-source="isData" :pagination="false" :bordered="true">
       <slot></slot>
     </a-table>
   </div>
