@@ -1,15 +1,25 @@
 <template>
   <div class="c-query">
-    Query
+    <form @submit="handleSubmit">
+
+
+    </form>
   </div>
 </template>
 <script>
 export default {
   name: 'Query',
+  props: {
+
+  },
   data() {
     return {}
   },
   mounted() {},
-  methods: {}
+  methods: {
+    handleSubmit(){
+      this.$emit('input',this.value)
+    }
+  }
 }
 </script>

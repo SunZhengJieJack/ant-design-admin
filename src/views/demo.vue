@@ -37,10 +37,16 @@ export default {
       ],
       query: {
         defaultValue: {
+          input02:'给input02一个静态值'
         },
         fields: [
           {
             name: 'input01',
+            type: 'string',
+            label: '输入框'
+          },
+          {
+            name: 'input02',
             type: 'string',
             label: '输入框'
           },
@@ -67,11 +73,7 @@ export default {
             label: '动态下拉框'
           }
         ],
-        layout: [
-          ['nm', 'idNo'],
-          ['pcpMtlHpSt', 'gnd', 'pstnTp']
-        ],
-        choices: {}
+        layout: [['input01', 'input02'], [{ colspan: 4, name: 'select01' },{ colspan: 4, name: 'select02' }]]
       },
       columns: [
         {
@@ -98,15 +100,16 @@ export default {
           title: '操作',
           dataIndex: 'action',
           width: 300,
-          customRender: function(text, record, index) {
-            const h = self.$createElement
+          render: function(h, row, index) {
+            console.log(row, index,'row, index')
             const child = [
               h('a-button', {
                 domProps: {
                   innerHTML: '静态btn'
                 },
                 props: {
-                  type: 'primary'
+                  type: 'primary',
+                  size: 'small'
                 }
               }),
               h('a-button', {
@@ -117,7 +120,40 @@ export default {
                   margin: '0 0 0 10px'
                 },
                 props: {
-                  type: 'primadashedry'
+                  type: 'primadashedry',
+                  size: 'small'
+                },
+                on: {
+                  click: function() {
+                    self.$message.error('点我干嘛！！！')
+                  }
+                }
+              })
+            ]
+            return child
+          },
+          customRender: function(text, record, index) {
+            const h = self.$createElement
+            const child = [
+              h('a-button', {
+                domProps: {
+                  innerHTML: '静态btn'
+                },
+                props: {
+                  type: 'primary',
+                  size: 'small'
+                }
+              }),
+              h('a-button', {
+                domProps: {
+                  innerHTML: '存在事件btn'
+                },
+                style: {
+                  margin: '0 0 0 10px'
+                },
+                props: {
+                  type: 'primadashedry',
+                  size: 'small'
                 },
                 on: {
                   click: function() {
