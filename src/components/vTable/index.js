@@ -7,11 +7,11 @@ import vDaterange from './DateRange.vue'
 import vButton from './Button.vue'
 const Components = {
   Grid,
-  vInput,
+  str: vInput,
   vSelect,
-  vDate,
-  vDaterange,
-  vButton
+  date: vDate,
+  daterange: vDaterange,
+  vButton: vButton
 }
 export default () => {
   return Object.keys(Components).forEach((name) => {

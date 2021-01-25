@@ -193,7 +193,7 @@ export default {
     },
     $_getPage(h) {
       const { config, config: { pagingOptions, pageState }, isTable, isTable: { total }, } = this
-      const columns = config.columns.map((item) => { 
+      const columns = config.columns.map((item) => {
         return Object.assign(item, {
           key: item.dataIndex,
         })
@@ -213,7 +213,7 @@ export default {
       pageval.pageNo = page
     },
     $_getButtons(h) {
-      let { config: { buttons } } = this
+      let { config: { buttons }, query } = this
       let btns = buttons.map(item => {
         return h('v-button', {
           style: {
@@ -222,7 +222,9 @@ export default {
           },
           attrs: item.attrs ? item.attrs : [],
           on: {
-            ...item.on,
+            'input': function () {
+              item.click(query)
+            }
           },
           props: {
             ...item.props,
@@ -267,7 +269,7 @@ export default {
     $_getComponents(h, row) {
       const { on = {}, attrs = {}, style = {}, props = {} } = row;
       const { query } = this;
-      return h(`v-${row.type}`,
+      return h(this.getName(row.type),
         {
           style,
           attrs,
@@ -275,8 +277,8 @@ export default {
             ...on,
             'input': (e) => {
               this.$set(query, row.name, e)
-            },
-            onChange: row.onChange?row.onChange:function(){}
+              row.onChange(e, query)
+            }
           },
           props: {
             ...props,
@@ -284,6 +286,14 @@ export default {
             value: query[row.name]
           }
         }, '')
+    },
+    getName(e) {
+      switch (e) {
+        case 'select':
+          return 'vSelect'
+        default:
+          return e
+      }
     }
   },
   render(h) {

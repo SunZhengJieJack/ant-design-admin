@@ -1,7 +1,12 @@
 <template>
   <div class="demo">
     <a-card title="Grid 组件" :bordered="false">
-      <Grid :config="config" ref="grid" :choices="choices" :queryval="isvalue"></Grid>
+      <Grid
+        :config="config"
+        ref="grid"
+        :choices="choices"
+        :queryval="isvalue"
+      ></Grid>
     </a-card>
   </div>
 </template>
@@ -9,7 +14,7 @@
 import Vue from 'vue'
 import { getList, getSelect } from '@/api/api.js'
 import Child from './child'
-Vue.component('v-child',Child)
+Vue.component('child', Child)
 export default {
   name: 'demo',
   data() {
@@ -24,7 +29,7 @@ export default {
           props: {
             type: 'primary'
           },
-          onChange: function(e) {
+          click: function(row) {
             debugger
           }
         },
@@ -42,6 +47,7 @@ export default {
             name: 'customInput',
             type: 'child',
             label: '我是自定义的',
+            colspan: 5
           },
           {
             name: 'addSelect',
@@ -50,18 +56,13 @@ export default {
             props: {
               showSearch: true
             },
-            // on: {
-            //   input: function (h) {
-            //     console.log(h, "change");
-            //   },
-            // },
             onChange: function(row, value) {
               console.log(row, value)
             }
           },
           {
             name: 'query1',
-            type: 'input',
+            type: 'str',
             label: 'input'
           },
           {
@@ -124,9 +125,13 @@ export default {
           title: '操作',
           dataIndex: 'action',
           width: 200,
-           customRender: function(text, record, index) {
+          customRender: function(text, record, index) {
             const h = self.$createElement
-            const child = [
+            const btnModel = self.$refs.grid
+            console.log(btnModel,'btnModel')
+            const btns = []
+            btns.push(
+              // btnModel,
               h('a-button', {
                 domProps: {
                   innerHTML: '静态btn'
@@ -153,8 +158,8 @@ export default {
                   }
                 }
               })
-            ]
-            return child
+            )
+            return btns
           }
         }
       ],
@@ -182,7 +187,7 @@ export default {
   },
   mounted() {},
   methods: {
-    openmsg(){
+    openmsg() {
       this.$message.error('点我干嘛！！！')
     },
     async setSelect() {
