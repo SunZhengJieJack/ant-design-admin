@@ -273,9 +273,8 @@ export default {
           attrs,
           on: {
             ...on,
-            'setVal': (e) => {
+            'input': (e) => {
               this.$set(query, row.name, e)
-              this.onChange(1,2)
             },
             onChange: row.onChange?row.onChange:function(){}
           },

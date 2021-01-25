@@ -5,7 +5,6 @@
  * format 日期时间
  */
 export const dateFormat = (time, format = 'yyyy-MM-dd') => {
-  debugger
   const t = new Date(time)
   const tf = function (i) {
     return (i < 10 ? '0' : '') + i
