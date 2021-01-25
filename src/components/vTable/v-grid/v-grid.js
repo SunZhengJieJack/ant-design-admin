@@ -269,7 +269,7 @@ export default {
     $_getComponents(h, row) {
       const { on = {}, attrs = {}, style = {}, props = {} } = row;
       const { query } = this;
-      return h(this.getName(row.type),
+      return h(this.$_getName(row.type),
         {
           style,
           attrs,
@@ -277,7 +277,7 @@ export default {
             ...on,
             'input': (e) => {
               this.$set(query, row.name, e)
-              row.onChange(e, query)
+              if(row.onChange) row.onChange(e, query)
             }
           },
           props: {
@@ -287,13 +287,16 @@ export default {
           }
         }, '')
     },
-    getName(e) {
+    $_getName(e) {
       switch (e) {
         case 'select':
           return 'vSelect'
         default:
           return e
       }
+    },
+    $_getModel(h){
+
     }
   },
   render(h) {

@@ -111,7 +111,7 @@ export default {
         },
         {
           dataIndex: 'name',
-          title: '名字'
+          title: '名字',
         },
         {
           dataIndex: 'age',
@@ -119,7 +119,10 @@ export default {
         },
         {
           dataIndex: 'gender',
-          title: '性别'
+          title: '性别',
+          customRender: function(text, record, index){
+            return text ? '女' : '男'
+          }
         },
         {
           title: '操作',
@@ -127,7 +130,7 @@ export default {
           width: 200,
           customRender: function(text, record, index) {
             const h = self.$createElement
-            const btnModel = self.$refs.grid
+            const btnModel = self.$refs.grid.$_getModel(h)
             console.log(btnModel,'btnModel')
             const btns = []
             btns.push(
