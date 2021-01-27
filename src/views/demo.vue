@@ -73,7 +73,7 @@ export default {
             label: '动态下拉框'
           }
         ],
-        layout: [['input01', 'input02'], [{ colspan: 4, name: 'select01' },{ colspan: 4, name: 'select02' }]]
+        layout: [['input01', 'input02'],[{ colspan: 4, name: 'select01' },{ colspan: 4, name: 'select02' }]]
       },
       columns: [
         {
