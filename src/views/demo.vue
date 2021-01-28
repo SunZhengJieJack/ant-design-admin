@@ -22,15 +22,16 @@ export default {
     let table = {
       bordered: true,
       pageState: true,
+      titleLayout: true,
       size: 'small',
       buttons: [
         {
-          name: '一个btn',
+          name: '改变自定义值',
           props: {
             type: 'primary'
           },
           click: function(row) {
-            debugger
+            row.customInput = '123123'
           }
         },
         {
@@ -130,8 +131,6 @@ export default {
           width: 200,
           customRender: function(text, record, index) {
             const h = self.$createElement
-            const btnModel = self.$refs.grid.$_getModel(h)
-            console.log(btnModel,'btnModel')
             const btns = []
             btns.push(
               // btnModel,

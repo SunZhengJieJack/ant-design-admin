@@ -187,7 +187,7 @@ export default {
         <div style={{ 'background': '#fff' }}>
           {this.$_getTabs(h)}
           {this.$_getTitleContent(h)}
-          <a-table bordered props={tableProps} scopedSlots={this.$scopedSlots}></a-table>
+          <a-table bordered props={tableProps} scopedSlots={this.$scopedSlots} rowKey={(record, index) => { return index }}></a-table>
         </div>
       )
     },
@@ -277,7 +277,7 @@ export default {
             ...on,
             'input': (e) => {
               this.$set(query, row.name, e)
-              if(row.onChange) row.onChange(e, query)
+              if (row.onChange) row.onChange(e, query)
             }
           },
           props: {
@@ -294,9 +294,6 @@ export default {
         default:
           return e
       }
-    },
-    $_getModel(h){
-
     }
   },
   render(h) {
